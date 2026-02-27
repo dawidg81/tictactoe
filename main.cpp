@@ -27,6 +27,14 @@ char symbol(int v) {
   return ' ';
 }
 
+char* stateName(int playerState) {
+  if (playerState == 0) {
+    return "Circle";
+  } else {
+    return "Cross";
+  }
+}
+
 int main() {
   bool inGame = true;
   int board[3][3] = {// 0 is nothing, 1 is circle, 2 is cross
@@ -38,9 +46,9 @@ int main() {
   int input = 0;
   while (inGame) {
     if (playerState == 0)
-      std::cout << "Circle's turn\n";
+      std::cout << "Circle's turn.\n";
     else
-      std::cout << "Crosse's turn\n";
+      std::cout << "Crosse's turn.\n";
 
     std::cout << "_____________\n"
               << "| " << symbol(board[0][0]) << " | " << symbol(board[0][1])
@@ -57,17 +65,28 @@ int main() {
       std::cout << "Circle has won!";
       inGame = false;
     }
+
     if (checkWin(board, 2)) {
       std::cout << "Cross has won!";
       inGame = false;
     }
 
     if (inGame) {
-      std::cout << "Select cell number to mark: ";
+      std::cout << "Select> ";
       std::cin >> input;
     }
 
-    board[(input - 1) / 3][(input - 1) % 3] = playerState + 1;
+    if (input == 0) {
+      std::cout << stateName(playerState) << " has forfeited.\n";
+      inGame = false;
+    }
+
+    if (input < 0 || input > 9) {
+      std::cout << "No such cell.\n";
+      continue;
+    } else {
+      board[(input - 1) / 3][(input - 1) % 3] = playerState + 1;
+    }
 
     if (playerState == 0) {
       playerState = 1;
@@ -76,7 +95,7 @@ int main() {
     }
 
     if (std::cin.fail()) {
-      std::cout << "Input failed\n";
+      std::cout << "Input failed.\n";
       inGame = false;
       return 1;
     }
