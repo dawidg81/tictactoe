@@ -27,7 +27,7 @@ char symbol(int v) {
   return ' ';
 }
 
-char* stateName(int playerState) {
+std::string stateName(int playerState) {
   if (playerState == 0) {
     return "Circle";
   } else {

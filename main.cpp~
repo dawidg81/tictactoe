@@ -1,5 +1,21 @@
 #include <iostream>
 
+bool checkWin(int board[3][3], int player) {
+  for (int i = 0; i < 3; i++) {
+    if (board[i][0] == player && board[i][1] == player && board[i][2] == player)
+      return true;
+    if (board[0][i] == player && board[1][i] == player && board[2][i] == player)
+      return true;
+  }
+
+  if (board[0][0] == player && board[1][1] == player && board[2][2] == player)
+    return true;
+  if (board[0][2] == player && board[1][1] == player && board[2][0] == player)
+    return true;
+
+  return false;
+}
+
 char symbol(int v) {
   if (v == 0) {
     return ' ';
@@ -37,8 +53,19 @@ int main() {
               << " | " << symbol(board[2][2]) << " |\n"
               << "-------------\n";
 
-    std::cout << "Select cell number to mark: ";
-    std::cin >> input;
+    if (checkWin(board, 1)) {
+      std::cout << "Circle has won!";
+      inGame = false;
+    }
+    if (checkWin(board, 2)) {
+      std::cout << "Cross has won!";
+      inGame = false;
+    }
+
+    if (inGame) {
+      std::cout << "Select cell number to mark: ";
+      std::cin >> input;
+    }
 
     board[(input - 1) / 3][(input - 1) % 3] = playerState + 1;
 
@@ -46,30 +73,6 @@ int main() {
       playerState = 1;
     } else if (playerState == 1) {
       playerState = 0;
-    }
-
-    if (board[0][0] == 1 && board[1][0] == 1 && board[2][0] == 1 && ||
-        board[0][1] == 1 && board[1][1] == 1 && board[2][1] == 1 && ||
-        board[0][2] == 1 && board[1][2] == 1 && board[2][2] == 1 && ||
-        board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1 && ||
-        board[1][0] == 1 && board[1][1] == 1 && board[1][2] == 1 && ||
-        board[2][0] == 1 && board[2][1] == 1 && board[2][2] == 1 && ||
-        board[0][0] == 1 && board[1][1] == 1 && board[2][2] == 1 && ||
-        board[0][2] == 1 && board[1][1] == 1 && board[2][0] == 1 && ||) {
-	    std::cout << "Circle has won!";
-	    inGame = false;
-    }
-
-    if (board[0][0] == 2 && board[1][0] == 2 && board[2][0] == 2 && ||
-        board[0][1] == 2 && board[1][1] == 2 && board[2][1] == 2 && ||
-        board[0][2] == 2 && board[1][2] == 2 && board[2][2] == 2 && ||
-        board[0][0] == 2 && board[0][1] == 2 && board[0][2] == 2 && ||
-        board[1][0] == 2 && board[1][1] == 2 && board[1][2] == 2 && ||
-        board[2][0] == 2 && board[2][1] == 2 && board[2][2] == 2 && ||
-        board[0][0] == 2 && board[1][1] == 2 && board[2][2] == 2 && ||
-        board[0][2] == 2 && board[1][1] == 2 && board[2][0] == 2 && ||) {
-	    std::cout << "Cross has won!"; 
-	    inGame = false;
     }
 
     if (std::cin.fail()) {
