@@ -36,7 +36,7 @@ int menu(){
 int main() {
 	init();
 
-	if (input == 1) {
+	if (menu() == 1) {
 
 		std::cout << "Enter nickname for Player 1: ";
 		std::cin >> player1;
