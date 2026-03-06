@@ -1,4 +1,3 @@
 *.exe
 tictactoe
-*~
-*.un~
+**~
