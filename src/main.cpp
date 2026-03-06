@@ -1,8 +1,7 @@
 #include <iostream>
 #include "utils.hpp"
 
-int main() {
-	std::string player1, player2;
+void init(){
 	bool inGame = true;
 	int board[3][3] = {// 0 is nothing, 1 is circle, 2 is cross
 										 {0, 0, 0},
@@ -11,6 +10,17 @@ int main() {
 	int playerState = 0; // 0 is circle, 1 is cross
 	int input = 0;
 	int gameInput = 0;
+}
+
+int main() {
+	std::string player1, player2;
+	bool inGame;
+	int board[3][3];
+	int playerState;
+	int input;
+	int gameInput;
+
+	init();
 
 	std::cout << "= MAIN MENU =\n"
 							 "1. Local Game\n";
