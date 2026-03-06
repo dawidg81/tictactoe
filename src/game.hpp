@@ -1,4 +1,4 @@
 #pragma once
 
 void init();
-int menu();
+int menu(int input);

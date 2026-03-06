@@ -1,5 +1,6 @@
 #include <iostream>
 #include "utils.hpp"
+#include "game.hpp"
 
 std::string player1, player2;
 bool inGame;
@@ -19,24 +20,10 @@ void init(){
 	int gameInput = 0;
 }
 
-int menu(){
-	std::cout << "= MAIN MENU =\n"
-							 "1. Local Game\n";
-	std::cout << "Select> ";
-	std::cin >> input;
-
-	return input;
-
-	if (std::cin.fail()) {
-		std::cout << "Input failed.\n";
-		return 1;
-	}
-}
-
 int main() {
 	init();
 
-	if (menu() == 1) {
+	if (menu(input) == 1) {
 
 		std::cout << "Enter nickname for Player 1: ";
 		std::cin >> player1;
