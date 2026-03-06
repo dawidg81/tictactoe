@@ -1,6 +1,13 @@
 #include <iostream>
 #include "utils.hpp"
 
+std::string player1, player2;
+bool inGame;
+int board[3][3];
+int playerState;
+int input;
+int gameInput;
+
 void init(){
 	bool inGame = true;
 	int board[3][3] = {// 0 is nothing, 1 is circle, 2 is cross
@@ -12,25 +19,22 @@ void init(){
 	int gameInput = 0;
 }
 
-int main() {
-	std::string player1, player2;
-	bool inGame;
-	int board[3][3];
-	int playerState;
-	int input;
-	int gameInput;
-
-	init();
-
+int menu(){
 	std::cout << "= MAIN MENU =\n"
 							 "1. Local Game\n";
 	std::cout << "Select> ";
 	std::cin >> input;
 
+	return input;
+
 	if (std::cin.fail()) {
 		std::cout << "Input failed.\n";
 		return 1;
 	}
+}
+
+int main() {
+	init();
 
 	if (input == 1) {
 
