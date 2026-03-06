@@ -24,7 +24,6 @@ int main() {
 	init();
 
 	if (menu(input) == 1) {
-
 		std::cout << "Enter nickname for Player 1: ";
 		std::cin >> player1;
 		std::cout << "Enter nickname for player 2: ";
